@@ -5,12 +5,18 @@ import com.intercom.test.exception.InvalidInputException;
 import java.util.List;
 
 public class FlattenArrayApplication {
-    public void flattenArray(Object[] inputArray, List<Integer> flattenedIntegerList) {
+    public void flattenArray(Object[] inputArray, List<Integer> flattenedOutput) {
 
         if (inputArray == null) {
             throw new InvalidInputException("Input array should not be null!");
         }
-        flattenArrayRecursive(inputArray, flattenedIntegerList);
+        if (flattenedOutput == null) {
+            throw new InvalidInputException("flattenedOutput cannot be null as it has hold elements");
+        }
+        if (!flattenedOutput.isEmpty()) {
+            throw new InvalidInputException("flattenedOutput cannot have pre-filled elements");
+        }
+        flattenArrayRecursive(inputArray, flattenedOutput);
 
     }
 
@@ -24,7 +30,7 @@ public class FlattenArrayApplication {
 
         for (Object element : inputArray) {
             if (element instanceof Object[]) {
-                flattenArray((Object[]) element, flattenedIntegerList);
+                flattenArrayRecursive((Object[]) element, flattenedIntegerList);
             } else if (element instanceof Integer) {
                 flattenedIntegerList.add((Integer) element);
             }

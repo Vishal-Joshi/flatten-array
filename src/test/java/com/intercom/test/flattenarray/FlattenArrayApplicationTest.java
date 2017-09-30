@@ -22,13 +22,13 @@ public class FlattenArrayApplicationTest {
                 new Integer[]{2, 3}
         };
         Integer[] expectedArray = new Integer[]{1, 2, 3};
-        List<Integer> flattenedArray = new ArrayList<Integer>();
+        List<Integer> flattenedOutput = new ArrayList<Integer>();
 
         //when
-        flattenArrayApplication.flattenArray(inputArray, flattenedArray);
+        flattenArrayApplication.flattenArray(inputArray, flattenedOutput);
 
         //then
-        assertThat(flattenedArray.toArray(new Integer[flattenedArray.size()]), is(equalTo(expectedArray)));
+        assertThat(flattenedOutput.toArray(new Integer[flattenedOutput.size()]), is(equalTo(expectedArray)));
     }
 
     @Test
@@ -49,13 +49,13 @@ public class FlattenArrayApplicationTest {
                                 new Object[]{8, 9}
                         }};
         Integer[] expectedArray = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
-        List<Integer> flattenedArray = new ArrayList<Integer>();
+        List<Integer> flattenedOutput = new ArrayList<Integer>();
 
         //when
-        flattenArrayApplication.flattenArray(inputArray, flattenedArray);
+        flattenArrayApplication.flattenArray(inputArray, flattenedOutput);
 
         //then
-        assertThat(flattenedArray.toArray(new Integer[flattenedArray.size()]), is(equalTo(expectedArray)));
+        assertThat(flattenedOutput.toArray(new Integer[flattenedOutput.size()]), is(equalTo(expectedArray)));
     }
 
     @Test(expected = InvalidInputException.class)
@@ -63,10 +63,33 @@ public class FlattenArrayApplicationTest {
         //given
         FlattenArrayApplication flattenArrayApplication = new FlattenArrayApplication();
         Object[] inputArray = null;
-        List<Integer> flattenedArray = new ArrayList<Integer>();
+        List<Integer> flattenedOutput = new ArrayList<Integer>();
 
         //when
-        flattenArrayApplication.flattenArray(inputArray, flattenedArray);
+        flattenArrayApplication.flattenArray(inputArray, flattenedOutput);
+    }
+
+    @Test(expected = InvalidInputException.class)
+    public void testShouldVerifyThatExceptionIsRaisedIfFlattenedOutputProvidedIsNull() {
+        //given
+        FlattenArrayApplication flattenArrayApplication = new FlattenArrayApplication();
+        Object[] inputArray = new Object[1];
+        List<Integer> flattenedOutput = null;
+
+        //when
+        flattenArrayApplication.flattenArray(inputArray, flattenedOutput);
+    }
+
+    @Test(expected = InvalidInputException.class)
+    public void testShouldVerifyThatExceptionIsRaisedIfFlattenedOutputIsPrePopulated() {
+        //given
+        FlattenArrayApplication flattenArrayApplication = new FlattenArrayApplication();
+        Object[] inputArray = new Object[1];
+        List<Integer> flattenedOutput = new ArrayList<Integer>();
+        flattenedOutput.add(1);
+
+        //when
+        flattenArrayApplication.flattenArray(inputArray, flattenedOutput);
     }
 
 }
