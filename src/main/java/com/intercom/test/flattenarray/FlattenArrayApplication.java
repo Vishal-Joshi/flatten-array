@@ -1,14 +1,14 @@
 package com.intercom.test.flattenarray;
 
-import java.util.Collections;
 import java.util.List;
 
 public class FlattenArrayApplication {
     public void flattenArray(Object[] inputArray, List<Integer> flattenedIntegerList) {
 
-        if (inputArray instanceof Integer[]) {
-            Integer[] elementArray = (Integer[]) inputArray;
-            Collections.addAll(flattenedIntegerList, elementArray);
+        if (ifAllIntegers(inputArray)) {
+            for (Object integerElement : inputArray) {
+                flattenedIntegerList.add((Integer) integerElement);
+            }
             return;
         }
 
@@ -20,5 +20,13 @@ public class FlattenArrayApplication {
             }
         }
 
+    }
+
+    private boolean ifAllIntegers(Object[] arrayToCheckForIntegers) {
+        boolean isInteger = true;
+        for (Object element : arrayToCheckForIntegers) {
+            isInteger = isInteger && (element instanceof Integer);
+        }
+        return isInteger;
     }
 }

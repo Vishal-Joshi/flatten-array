@@ -37,15 +37,15 @@ public class FlattenArrayApplicationTest {
         //[1,[2,3],[[4],[[5,6],7],[8,9]]]
         Object[] inputArray = new Object[]{
                 1,
-                new Integer[]{2, 3},
+                new Object[]{2, 3},
                 new Object[]
                         {
-                                new Integer[]{4},
+                                new Object[]{4},
                                 new Object[]{
-                                        new Integer[]{5, 6},
+                                        new Object[]{5, 6},
                                         7
                                 },
-                                new Integer[]{8, 9}
+                                new Object[]{8, 9}
                         }};
         Integer[] expectedArray = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
         List<Integer> flattenedArray = new ArrayList<Integer>();
