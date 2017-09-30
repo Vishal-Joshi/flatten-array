@@ -1,17 +1,27 @@
 package com.intercom.test.flattenarray;
 
-import com.intercom.test.exception.InvalidInputException;
 import org.junit.Test;
+
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsEqual.equalTo;
+import static org.hamcrest.junit.MatcherAssert.assertThat;
 
 public class FlattenArrayApplicationTest {
 
-    @Test(expected = InvalidInputException.class)
-    public void testShouldRaiseAnExceptionIfInputArrayIsNotArray(){
+    @Test
+    public void testShouldFlattenArrayOfOneIntegerArray() {
         //given
         FlattenArrayApplication flattenArrayApplication = new FlattenArrayApplication();
-        Object inputArray = new Object();
+        Object[] inputArray = new Object[]{
+                1,
+                new Integer[]{2, 3}
+        };
+        Integer[] expectedArray = new Integer[]{1, 2, 3};
 
         //when
-        flattenArrayApplication.flattenArray(inputArray);
+        Integer[] flattenedArray = flattenArrayApplication.flattenArray(inputArray);
+
+        //then
+        assertThat(flattenedArray, is(equalTo(expectedArray)));
     }
 }
