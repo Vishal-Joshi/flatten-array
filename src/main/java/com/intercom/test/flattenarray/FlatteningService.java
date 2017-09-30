@@ -4,7 +4,7 @@ import com.intercom.test.exception.InvalidInputException;
 
 import java.util.List;
 
-public class FlattenArrayApplication {
+public class FlatteningService {
     public void flattenArray(Object[] inputArray, List<Integer> flattenedOutput) {
 
         if (inputArray == null) {

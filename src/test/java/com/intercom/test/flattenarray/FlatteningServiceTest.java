@@ -10,12 +10,12 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.junit.MatcherAssert.assertThat;
 
-public class FlattenArrayApplicationTest {
+public class FlatteningServiceTest {
 
     @Test
     public void testShouldFlattenArrayOfOneIntegerArray() {
         //given
-        FlattenArrayApplication flattenArrayApplication = new FlattenArrayApplication();
+        FlatteningService flatteningService = new FlatteningService();
         //[1,[2,3]]
         Object[] inputArray = new Object[]{
                 1,
@@ -25,7 +25,7 @@ public class FlattenArrayApplicationTest {
         List<Integer> flattenedOutput = new ArrayList<Integer>();
 
         //when
-        flattenArrayApplication.flattenArray(inputArray, flattenedOutput);
+        flatteningService.flattenArray(inputArray, flattenedOutput);
 
         //then
         assertThat(flattenedOutput.toArray(new Integer[flattenedOutput.size()]), is(equalTo(expectedArray)));
@@ -34,7 +34,7 @@ public class FlattenArrayApplicationTest {
     @Test
     public void testShouldFlattenArrayOfMultipleArrayOfArrays() {
         //given
-        FlattenArrayApplication flattenArrayApplication = new FlattenArrayApplication();
+        FlatteningService flatteningService = new FlatteningService();
         //[1,[2,3],[[4],[[5,6],7],[8,9]]]
         Object[] inputArray = new Object[]{
                 1,
@@ -52,7 +52,7 @@ public class FlattenArrayApplicationTest {
         List<Integer> flattenedOutput = new ArrayList<Integer>();
 
         //when
-        flattenArrayApplication.flattenArray(inputArray, flattenedOutput);
+        flatteningService.flattenArray(inputArray, flattenedOutput);
 
         //then
         assertThat(flattenedOutput.toArray(new Integer[flattenedOutput.size()]), is(equalTo(expectedArray)));
@@ -61,35 +61,35 @@ public class FlattenArrayApplicationTest {
     @Test(expected = InvalidInputException.class)
     public void testShouldVerifyThatExceptionIsRaisedIfInputArrayIsNull() {
         //given
-        FlattenArrayApplication flattenArrayApplication = new FlattenArrayApplication();
+        FlatteningService flatteningService = new FlatteningService();
         Object[] inputArray = null;
         List<Integer> flattenedOutput = new ArrayList<Integer>();
 
         //when
-        flattenArrayApplication.flattenArray(inputArray, flattenedOutput);
+        flatteningService.flattenArray(inputArray, flattenedOutput);
     }
 
     @Test(expected = InvalidInputException.class)
     public void testShouldVerifyThatExceptionIsRaisedIfFlattenedOutputProvidedIsNull() {
         //given
-        FlattenArrayApplication flattenArrayApplication = new FlattenArrayApplication();
+        FlatteningService flatteningService = new FlatteningService();
         Object[] inputArray = new Object[1];
         List<Integer> flattenedOutput = null;
 
         //when
-        flattenArrayApplication.flattenArray(inputArray, flattenedOutput);
+        flatteningService.flattenArray(inputArray, flattenedOutput);
     }
 
     @Test(expected = InvalidInputException.class)
     public void testShouldVerifyThatExceptionIsRaisedIfFlattenedOutputIsPrePopulated() {
         //given
-        FlattenArrayApplication flattenArrayApplication = new FlattenArrayApplication();
+        FlatteningService flatteningService = new FlatteningService();
         Object[] inputArray = new Object[1];
         List<Integer> flattenedOutput = new ArrayList<Integer>();
         flattenedOutput.add(1);
 
         //when
-        flattenArrayApplication.flattenArray(inputArray, flattenedOutput);
+        flatteningService.flattenArray(inputArray, flattenedOutput);
     }
 
 }
