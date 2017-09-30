@@ -1,10 +1,20 @@
 package com.intercom.test.flattenarray;
 
+import com.intercom.test.exception.InvalidInputException;
+
 import java.util.List;
 
 public class FlattenArrayApplication {
     public void flattenArray(Object[] inputArray, List<Integer> flattenedIntegerList) {
 
+        if (inputArray == null) {
+            throw new InvalidInputException("Input array should not be null!");
+        }
+        flattenArrayRecursive(inputArray, flattenedIntegerList);
+
+    }
+
+    private void flattenArrayRecursive(Object[] inputArray, List<Integer> flattenedIntegerList) {
         if (ifAllIntegers(inputArray)) {
             for (Object integerElement : inputArray) {
                 flattenedIntegerList.add((Integer) integerElement);
@@ -19,7 +29,6 @@ public class FlattenArrayApplication {
                 flattenedIntegerList.add((Integer) element);
             }
         }
-
     }
 
     private boolean ifAllIntegers(Object[] arrayToCheckForIntegers) {

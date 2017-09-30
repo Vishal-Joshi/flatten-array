@@ -1,5 +1,6 @@
 package com.intercom.test.flattenarray;
 
+import com.intercom.test.exception.InvalidInputException;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -56,4 +57,16 @@ public class FlattenArrayApplicationTest {
         //then
         assertThat(flattenedArray.toArray(new Integer[flattenedArray.size()]), is(equalTo(expectedArray)));
     }
+
+    @Test(expected = InvalidInputException.class)
+    public void testShouldVerifyThatExceptionIsRaisedIfInputArrayIsNull() {
+        //given
+        FlattenArrayApplication flattenArrayApplication = new FlattenArrayApplication();
+        Object[] inputArray = null;
+        List<Integer> flattenedArray = new ArrayList<Integer>();
+
+        //when
+        flattenArrayApplication.flattenArray(inputArray, flattenedArray);
+    }
+
 }
