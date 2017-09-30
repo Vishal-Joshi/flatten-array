@@ -15,6 +15,7 @@ public class FlattenArrayApplicationTest {
     public void testShouldFlattenArrayOfOneIntegerArray() {
         //given
         FlattenArrayApplication flattenArrayApplication = new FlattenArrayApplication();
+        //[1,[2,3]]
         Object[] inputArray = new Object[]{
                 1,
                 new Integer[]{2, 3}
@@ -32,8 +33,8 @@ public class FlattenArrayApplicationTest {
     @Test
     public void testShouldFlattenArrayOfMultipleArrayOfArrays() {
         //given
-        //[1,[2,3],[[4],[[5,6],7],[8,9]]]
         FlattenArrayApplication flattenArrayApplication = new FlattenArrayApplication();
+        //[1,[2,3],[[4],[[5,6],7],[8,9]]]
         Object[] inputArray = new Object[]{
                 1,
                 new Integer[]{2, 3},
