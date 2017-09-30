@@ -1,23 +1,24 @@
 package com.intercom.test.flattenarray;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class FlattenArrayApplication {
-    //[[1,2,[3]],4] → [1,2,3,4]
+    public void flattenArray(Object[] inputArray, List<Integer> flattenedIntegerList) {
 
-    public Integer[] flattenArray(Object[] inputArray) {
-        List<Integer> flattenedIntegerList = new ArrayList<Integer>();
+        if (inputArray instanceof Integer[]) {
+            Integer[] elementArray = (Integer[]) inputArray;
+            Collections.addAll(flattenedIntegerList, elementArray);
+            return;
+        }
+
         for (Object element : inputArray) {
-            if (element instanceof Integer[]) {
-                Integer[] elementArray = (Integer[]) element;
-                Collections.addAll(flattenedIntegerList, elementArray);
+            if (element instanceof Object[]) {
+                flattenArray((Object[]) element, flattenedIntegerList);
             } else if (element instanceof Integer) {
                 flattenedIntegerList.add((Integer) element);
             }
         }
-        return flattenedIntegerList.toArray(new Integer[flattenedIntegerList.size()]);
 
     }
 }
