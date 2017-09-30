@@ -1,6 +1,7 @@
 package com.intercom.test.flattenarray;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class FlattenArrayApplication {
@@ -11,9 +12,7 @@ public class FlattenArrayApplication {
         for (Object element : inputArray) {
             if (element instanceof Integer[]) {
                 Integer[] elementArray = (Integer[]) element;
-                for (Integer currentElement : elementArray) {
-                    flattenedIntegerList.add(currentElement);
-                }
+                Collections.addAll(flattenedIntegerList, elementArray);
             } else if (element instanceof Integer) {
                 flattenedIntegerList.add((Integer) element);
             }
