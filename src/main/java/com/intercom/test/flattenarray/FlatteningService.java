@@ -4,7 +4,20 @@ import com.intercom.test.exception.InvalidInputException;
 
 import java.util.List;
 
+/**
+ * This service takes an input array which may comprise of
+ * many nested arrays to finally compose the flattened output.
+ *
+ * @author Vishal Joshi
+ */
 public class FlatteningService {
+
+    /**
+     * This method should be used to flatten the array composed
+     * of multiple nested uni-dimensional arrays
+     * @param inputArray array to flatten
+     * @param flattenedOutput output array as list.
+     */
     public void flattenArray(Object[] inputArray, List<Integer> flattenedOutput) {
 
         if (inputArray == null) {
@@ -37,6 +50,11 @@ public class FlatteningService {
         }
     }
 
+    /**
+     * Check if array composes of integers only and no nested arrays
+     * @param arrayToCheckForIntegers array to validate
+     * @return true, if all integers; else,false
+     */
     private boolean ifAllIntegers(Object[] arrayToCheckForIntegers) {
         boolean isInteger = true;
         for (Object element : arrayToCheckForIntegers) {
