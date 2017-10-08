@@ -3,8 +3,8 @@ This application is an implementation of flattening array which is composed of m
 uni-dimensional arrays.
 
 ## Technologies used
-*Java 8* for development
-*JUnit 4* for unit testing
+1. *Java 8* for production
+2. *JUnit 4* for unit testing
 
 ## Build
 The application can be built using `mvn clean package`
